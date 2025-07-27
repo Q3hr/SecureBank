@@ -46,7 +46,7 @@ A modern, secure, and educational banking application built using Python Flask t
 1. Clone the repo:
 
 ```bash
-git clone 
+git clone https://github.com/Q3hr/SecureBank.git
 cd securebank  
 ```
 
