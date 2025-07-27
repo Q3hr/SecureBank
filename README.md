@@ -675,7 +675,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 
 [![University](https://img.shields.io/badge/Institution-University_of_Wah-blue.svg)](#)
 [![Course](https://img.shields.io/badge/Course-Cybersecurity-red.svg)](#)
-[![Semester](https://img.shields.io/badge/Semester-3rd-green.svg)](#)
+[![Semester](https://img.shields.io/badge/Semester-4th-green.svg)](#)
 [![Framework](https://img.shields.io/badge/Framework-Flask-green.svg)](#)
 [![Security](https://img.shields.io/badge/Security-OWASP_Compliant-orange.svg)](#)
 
