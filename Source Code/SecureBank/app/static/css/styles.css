@@ -1,0 +1,32 @@
+/* Light Theme (Default) */
+body.light-mode {
+    background-color: #f8f9fa;
+    color: #212529;
+  }
+  
+  /* Dark Theme */
+  body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  body.dark-mode .navbar {
+    background-color: #1f1f1f !important;
+  }
+  
+  body.dark-mode .card,
+  body.dark-mode .list-group-item {
+    background-color: #1e1e1e;
+    color: #ffffff;
+  }
+  
+  body.dark-mode .btn-outline-primary,
+  body.dark-mode .btn-outline-dark {
+    border-color: #aaa;
+    color: #aaa;
+  }
+  
+  body.dark-mode a {
+    color: #80bdff;
+  }
+  

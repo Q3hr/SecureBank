@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Statement - {{ username }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 30px;
+      background: #f5f5f5;
+    }
+    .statement {
+      background: white;
+      padding: 20px 30px;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #0d6efd;
+      margin-bottom: 25px;
+    }
+    ul {
+      padding: 0;
+      list-style: none;
+    }
+    li {
+      background: #f1f1f1;
+      margin-bottom: 12px;
+      padding: 12px 18px;
+      border-left: 4px solid #0d6efd;
+      border-radius: 5px;
+      font-size: 15px;
+    }
+    .print-btn {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+    }
+    .print-btn button {
+      padding: 10px 20px;
+      background: #0d6efd;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    @media print {
+      .print-btn {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="statement">
+    <h2>Mini Statement</h2>
+    <p><strong>User:</strong> {{ username }}</p>
+    <p><strong>Date:</strong> {{ now().strftime("%d %B %Y") }}</p>
+    <hr>
+    {% if history %}
+      <ul>
+        {% for item in history %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No recent transactions found.</p>
+    {% endif %}
+
+    <div class="print-btn">
+      <button onclick="window.print()">🖨️ Print / Save as PDF</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Dashboard | Secure Bank{% endblock %}
+
+{% block content %}
+  <h2 class="mb-4">Hello, {{ username }} 👋</h2>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <p class="m-0"><strong>Balance:</strong> ${{ balance }}</p>
+    <a href="/print_history" target="_blank" class="btn btn-outline-primary btn-sm">
+      🖨️ Print History
+    </a>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <h4 class="mt-4">Deposit Funds</h4>
+      <form method="POST" action="/deposit">
+        <div class="mb-2">
+          <input type="number" step="0.01" name="amount" class="form-control" placeholder="Amount to deposit" required>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Deposit</button>
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <h4 class="mt-4">Withdraw Funds</h4>
+      <form id="withdraw-form" method="POST" action="/withdraw">
+        <div class="mb-2">
+          <input type="number" step="0.01" id="withdraw-amount" name="amount" class="form-control" placeholder="Amount to withdraw" required>
+        </div>
+        <!-- Hidden password field to be populated via JS -->
+        <input type="hidden" id="confirm_password" name="confirm_password">
+        <button type="button" onclick="handleWithdraw()" class="btn btn-danger w-100">Withdraw</button>
+      </form>                
+    </div>
+  </div>
+
+  <h4 class="mt-5">Transaction History</h4>
+  {% if history %}
+  <ul class="list-group">
+    {% for entry in history[-5:]|reverse %}
+      <li class="list-group-item">{{ entry }}</li>
+    {% endfor %}
+  </ul>
+  {% if history|length > 5 %}
+    <div class="text-center mt-2">
+      <small class="text-muted">Showing latest 5 of {{ history|length }} transactions</small>
+    </div>
+  {% endif %}
+{% else %}
+  <p>No transactions yet.</p>
+{% endif %}
+
+  <a href="/logout" class="btn btn-outline-dark mt-4">Logout</a>
+  <!-- Password Modal -->
+<div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="passwordModalLabel">🔐 Confirm Withdrawal</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Please enter your password to confirm withdrawal.</p>
+        <input type="password" class="form-control" id="modal-password" placeholder="Password" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" onclick="submitWithdraw()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+

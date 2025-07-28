@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Reset Password | SecureBank{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h4 class="card-title text-center mb-4">🔐 Set New Password</h4>
+        <form method="POST">
+          <div class="mb-3">
+            <label for="new_password" class="form-label">New Password</label>
+            <input type="password" class="form-control" id="new_password" name="new_password" required oninput="validatePassword(this.value)">
+            <ul class="list-unstyled small mt-2" id="password-feedback">
+              <li id="length" class="text-danger">❌ 8–16 characters</li>
+              <li id="upper" class="text-danger">❌ At least one uppercase letter</li>
+              <li id="lower" class="text-danger">❌ At least one lowercase letter</li>
+              <li id="number" class="text-danger">❌ At least one digit</li>
+              <li id="symbol" class="text-danger">❌ At least one special character</li>
+            </ul>
+          </div>          
+            <input type="password" class="form-control" id="new_password" name="new_password" required />
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-success">
+              Update Password
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+function validatePassword(password) {
+  document.getElementById("length").className = password.length >= 8 && password.length <= 16 ? "text-success" : "text-danger";
+  document.getElementById("upper").className = /[A-Z]/.test(password) ? "text-success" : "text-danger";
+  document.getElementById("lower").className = /[a-z]/.test(password) ? "text-success" : "text-danger";
+  document.getElementById("number").className = /\d/.test(password) ? "text-success" : "text-danger";
+  document.getElementById("symbol").className = /[!@#$%^&*(),.?":{}|<>]/.test(password) ? "text-success" : "text-danger";
+
+  document.getElementById("length").innerHTML = (password.length >= 8 && password.length <= 16 ? "✅" : "❌") + " 8–16 characters";
+  document.getElementById("upper").innerHTML = (/[A-Z]/.test(password) ? "✅" : "❌") + " At least one uppercase letter";
+  document.getElementById("lower").innerHTML = (/[a-z]/.test(password) ? "✅" : "❌") + " At least one lowercase letter";
+  document.getElementById("number").innerHTML = (/\d/.test(password) ? "✅" : "❌") + " At least one digit";
+  document.getElementById("symbol").innerHTML = (/[!@#$%^&*(),.?\":{}|<>]/.test(password) ? "✅" : "❌") + " At least one special character";
+}
+</script>
+{% endblock %}
+
